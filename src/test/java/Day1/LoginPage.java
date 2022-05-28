@@ -28,15 +28,22 @@ public class LoginPage {
         public void typeUserName(){
 
              driver.findElement(username).sendKeys("standard_user");
-             driver.findElement(username).sendKeys("locked_out_user");
-             driver.findElement(username).sendKeys("problem_user");
-             driver.findElement(username).sendKeys("performance_glitch_user");
+//             driver.findElement(username).sendKeys("locked_out_user");
+//             driver.findElement(username).sendKeys("problem_user");
+//             driver.findElement(username).sendKeys("performance_glitch_user");
         }
 
         public void typePassword(){
 
              driver.findElement(password).sendKeys("secret_sauce");
         }
+
+       public void typeWrongPassword(){
+
+              driver.findElement(password).sendKeys("secret_sauce1");
+    }
+
+
 
         public void clickOnLoginButton(){
              driver.findElement(loginButton).click();
