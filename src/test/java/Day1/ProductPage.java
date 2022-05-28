@@ -1,6 +1,7 @@
 package Day1;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class ProductPage {
@@ -17,23 +18,46 @@ public class ProductPage {
 
     By addToCartClick= By.xpath("//button[text()='Add to cart']");
 
+    By cartClick= By.xpath("//a[@class='shopping_cart_link'] ");
+
 
 
 
     public boolean isProductPageVisible(){
-
-        return driver.findElement(productTitle).isDisplayed();
-
+        try {
+            return driver.findElement(productTitle).isDisplayed();
+        }catch (NoSuchElementException e){
+            return false;
+        }
     }
 
-    public boolean isProductIteamLoaded(){
 
-       return driver.findElement(productClick).isDisplayed();
+    public ProductPage clickOnProductItem(){
+
+        driver.findElement(productClick).click();
+        return this;
     }
 
-    public boolean isProductClickWork(){
-        return driver.findElement(addToCartClick).isDisplayed();
+    public boolean isProductItemDisplayed(){
+
+        return driver.findElement(productClick).isDisplayed();
     }
+
+    public ProductPage clickOnAddToCart(){
+         driver.findElement(addToCartClick).click();
+         return this;
+    }
+
+    public ProductPage clickOnCart(){
+        driver.findElement(cartClick).click();
+        return this;
+    }
+
+    public boolean isItemDisplayedOnCart(){
+        return driver.findElement(productClick).isDisplayed();
+    }
+
+
 
 
 }
