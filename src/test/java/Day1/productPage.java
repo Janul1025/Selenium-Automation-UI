@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class ProductPage {
+public class productPage {
 
     WebDriver driver;
 
-    public ProductPage(WebDriver driver) {
+    public productPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -16,48 +16,44 @@ public class ProductPage {
 
     By productClick = By.xpath("//div[text()='Sauce Labs Backpack']");
 
-    By addToCartClick= By.xpath("//button[text()='Add to cart']");
+    By addToCartClick = By.xpath("//button[text()='Add to cart']");
 
-    By cartClick= By.xpath("//a[@class='shopping_cart_link'] ");
-
-
+    By cartClick = By.xpath("//a[@class='shopping_cart_link'] ");
 
 
-    public boolean isProductPageVisible(){
+    public boolean isProductPageVisible() {
         try {
             return driver.findElement(productTitle).isDisplayed();
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
 
 
-    public ProductPage clickOnProductItem(){
+    public productPage clickOnProductItem() {
 
         driver.findElement(productClick).click();
         return this;
     }
 
-    public boolean isProductItemDisplayed(){
+    public boolean isProductItemDisplayed() {
 
         return driver.findElement(productClick).isDisplayed();
     }
 
-    public ProductPage clickOnAddToCart(){
-         driver.findElement(addToCartClick).click();
-         return this;
+    public productPage clickOnAddToCart() {
+        driver.findElement(addToCartClick).click();
+        return this;
     }
 
-    public ProductPage clickOnCart(){
+    public productPage clickOnCart() {
         driver.findElement(cartClick).click();
         return this;
     }
 
-    public boolean isItemDisplayedOnCart(){
+    public boolean isItemDisplayedOnCart() {
         return driver.findElement(productClick).isDisplayed();
     }
-
-
 
 
 }

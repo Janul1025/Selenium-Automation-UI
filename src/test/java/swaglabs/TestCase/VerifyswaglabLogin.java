@@ -1,7 +1,7 @@
 package swaglabs.TestCase;
 
-import Day1.LoginPage;
-import Day1.ProductPage;
+import Day1.loginPage;
+import Day1.productPage;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,17 +10,17 @@ import org.testng.Assert;
 public class VerifyswaglabLogin {
 
     @Test
-    public void verifySwagLabLogin(){
+    public void verifySwagLabLogin() {
 
-        System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
-        WebDriver driver=new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "D://Downloads//chromedriver_win32//chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
 
         driver.get("https://www.saucedemo.com/");
 
-        LoginPage login = new LoginPage(driver);
-        ProductPage productPage = new ProductPage(driver);
+        loginPage login = new loginPage(driver);
+        productPage productPage = new productPage(driver);
 
         login.typeUserName();
         login.typePassword();
@@ -37,18 +37,18 @@ public class VerifyswaglabLogin {
 
 
     @Test
-    public void verifySwagLabProductClick(){
+    public void verifySwagLabProductClick() {
 
-        System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
-        WebDriver driver=new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "D://Downloads//chromedriver_win32//chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
 
         driver.get("https://www.saucedemo.com/");
 
-        LoginPage login = new LoginPage(driver);
-        ProductPage productPage = new ProductPage(driver);
-        ProductPage productClick= new ProductPage(driver);
+        loginPage login = new loginPage(driver);
+        productPage productPage = new productPage(driver);
+        Day1.productPage productClick = new productPage(driver);
 
         login.typeUserName();
         login.typePassword();
@@ -67,49 +67,48 @@ public class VerifyswaglabLogin {
 
 
     @Test
-    public void verifySwagLabAddToCartFunction(){
+    public void verifySwagLabAddToCartFunction() {
 
-        System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
-        WebDriver driver=new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "D://Downloads//chromedriver_win32//chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
 
         driver.get("https://www.saucedemo.com/");
 
 
-        LoginPage login = new LoginPage(driver);
-        ProductPage productPage = new ProductPage(driver);
-
+        loginPage login = new loginPage(driver);
+        productPage productPage = new productPage(driver);
 
 
         login.typeUserName();
         login.typePassword();
         login.clickOnLoginButton();
 
-         productPage.clickOnProductItem()
+        productPage.clickOnProductItem()
                 .clickOnAddToCart()
                 .clickOnCart();
 
-        boolean isItemDisplayedOnCart =productPage.isItemDisplayedOnCart();
+        boolean isItemDisplayedOnCart = productPage.isItemDisplayedOnCart();
 
 
-        Assert.assertEquals(isItemDisplayedOnCart,true);
+        Assert.assertEquals(isItemDisplayedOnCart, true);
         driver.quit();
 
     }
 
     @Test
-    public void verifySwagLabFailedLogin(){
+    public void verifySwagLabFailedLogin() {
 
-        System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
-        WebDriver driver=new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "D://Downloads//chromedriver_win32//chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
 
         driver.get("https://www.saucedemo.com/");
 
-        LoginPage login = new LoginPage(driver);
-        ProductPage productPage = new ProductPage(driver);
+        loginPage login = new loginPage(driver);
+        productPage productPage = new productPage(driver);
 
         login.typeUserName();
         login.typeWrongPassword();
