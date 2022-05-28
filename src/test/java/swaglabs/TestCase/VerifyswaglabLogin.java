@@ -4,16 +4,13 @@ import Day1.LoginPage;
 import Day1.ProductPage;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.opera.OperaDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class VerifyswaglabLogin {
 
     @Test
-    public void VerifyswaglabLogin(){
+    public void verifySwagLabLogin(){
 
         System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
         WebDriver driver=new ChromeDriver();
@@ -33,21 +30,21 @@ public class VerifyswaglabLogin {
 
         Assert.assertTrue(isProductPageVisible);
 
-        Assert.assertEquals(productPage.isProductPageVisible(),true);
+//        Assert.assertEquals(productPage.isProductPageVisible(),true);
         driver.quit();
 
     }
 
 
     @Test
-    public void VerifyswaglabProductClick(){
+    public void verifySwagLabProductClick(){
 
         System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
         WebDriver driver=new ChromeDriver();
 
         driver.manage().window().maximize();
 
-        driver.get("https://www.saucedemo.com/inventory.html/");
+        driver.get("https://www.saucedemo.com/");
 
         LoginPage login = new LoginPage(driver);
         ProductPage productPage = new ProductPage(driver);
@@ -57,42 +54,75 @@ public class VerifyswaglabLogin {
         login.typePassword();
         login.clickOnLoginButton();
 
-        boolean isProductIteamLoaded= productPage.isProductIteamLoaded();
+        productPage.clickOnProductItem();
+
+        boolean isProductIteamLoaded = productPage.isProductItemDisplayed();
+
 
         Assert.assertTrue(isProductIteamLoaded);
 
-        Assert.assertEquals(productClick.isProductIteamLoaded(),true);
         driver.quit();
 
     }
 
 
     @Test
-    public void VerifyswaglabAddToCartClick(){
+    public void verifySwagLabAddToCartFunction(){
 
         System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
         WebDriver driver=new ChromeDriver();
 
         driver.manage().window().maximize();
 
-        driver.get("https://www.saucedemo.com/cart.html/");
+        driver.get("https://www.saucedemo.com/");
+
 
         LoginPage login = new LoginPage(driver);
-//        ProductPage productPage = new ProductPage(driver);
-//        ProductPage productClick= new ProductPage(driver);
-        ProductPage productAddToCart= new ProductPage(driver);
+        ProductPage productPage = new ProductPage(driver);
+
+
 
         login.typeUserName();
         login.typePassword();
         login.clickOnLoginButton();
 
-        boolean isProductClickWork= productAddToCart.isProductClickWork();
+         productPage.clickOnProductItem()
+                .clickOnAddToCart()
+                .clickOnCart();
 
-        Assert.assertTrue(isProductClickWork);
+        boolean isItemDisplayedOnCart =productPage.isItemDisplayedOnCart();
 
-        Assert.assertEquals(productAddToCart.isProductClickWork(),true);
+
+        Assert.assertEquals(isItemDisplayedOnCart,true);
         driver.quit();
 
     }
+
+    @Test
+    public void verifySwagLabFailedLogin(){
+
+        System.setProperty("webdriver.chrome.driver","D://Downloads//chromedriver_win32//chromedriver.exe");
+        WebDriver driver=new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://www.saucedemo.com/");
+
+        LoginPage login = new LoginPage(driver);
+        ProductPage productPage = new ProductPage(driver);
+
+        login.typeUserName();
+        login.typeWrongPassword();
+        login.clickOnLoginButton();
+
+        boolean isProductPageVisible = productPage.isProductPageVisible();
+
+        Assert.assertFalse(isProductPageVisible);
+
+
+        driver.quit();
+
+    }
+
 
 }
